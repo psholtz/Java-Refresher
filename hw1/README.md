@@ -109,3 +109,7 @@ Most of the previous problems have been about single methods, but Taboo is a cla
 The Taboo noFollow(elem) method returns the set of elements which should not follow the given element according to the rules. So with the rules {"a", "c", "a", "b"} the noFollow("a") returns the Set {"c", "b"}, while noFollow() with an element not constrained in the rules, e.g., noFollow("x") returns the empty set (the utility method Collections.emptySet() returns a read-only empty set for convinience).
 
 The reduce(List&lt;T&gt;) operation takes in a list, iterates over the list from start to end, and modifies the list by deleting the second element of any adjacent elements during the iteration that violate the rules. So for example, with the above rules, the collection {"a", "c", "b", "x", "c", "a"} is reduced to {"a", "x", "c"}. The elements in bold -- {"a", "c", "b", "x", "c", "a"} -- are deleted during the iteration since they violate a rule.
+
+The Taboo&lt;T&gt; class works on a generic <T> type which can be any type of object, and assume that the object implements equals() and hashCode() correctly (such as String or Integer). In the Taboo constructor, build some data structure to store the rules so that the methods can operate efficiently -- note that the rules data for the Taboo are given in the constructor and then never change.
+
+A rules list may have nulls in it as spacers, such as {"a", "b", null, "c", "d"} -- "b" cannot follow "a", and "d" cannot follow "c". The null allows the rules to avoid making a claim about "c" and "b".
