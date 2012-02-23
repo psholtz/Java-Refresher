@@ -69,3 +69,5 @@ The one key method in TetrisGrid is clearRows() which should delete the full row
 [xx]
 
 There is a simple getGrid() that exposes the grid stored in TetrisGrid, so unit tests can call clearRows() and then getGrid() to check the resulting grid.
+
+xx
