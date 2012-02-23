@@ -102,7 +102,7 @@ In the Appearances class, the static Appearances.sameCount() method takes in two
 
 For example, with the collections {"a", "b", "a", "b", "c"} and {"c", "a", "a", "d", "b", "b", "b"} it returns 2, since the "a" and "c" appear the same number of times in both collections. Use hasing to compute the number of appearances efficiently.
 
-**class Taboo<T>**
+**class Taboo&lt;T&gt;**
 
 Most of the previous problems have been about single methods, but Taboo is a class. The Taboo class encapsulates a "rules" list such as {"a", "c", "a", "b"}. The rules define what objects should not follow other objects. In this case "c" should not follow "a", "a", should not follow "c", and "b" should not follow "a". The objects in the rules may be any type, but will not be null.
 
