@@ -44,3 +44,28 @@ char[][] grid = new char[][] {
   {' ', ' ', 'a'}
 };
 </pre>
+
+**int countPlus()**
+
+Look for a '+' pattern in the grid made with repitition of a character. A + is made of a single character in the middle and four "arms" extending out up, down, left and right. The arms start with the middle char and extend until the first different character or grid edge. To count as a +, all the arms should have two or more chars and should all be the same length. For example, the grid below contains exactly 2 +'s:
+
+<pre>
+    p
+    p         x
+p p p p p   x x x
+    p     y   x
+    p   y y y 
+z z z z z y z z z 
+    x x   y
+</pre>
+
+TetrisGrid
+---------- 
+
+**void clearRows()**
+
+The one key method in TetrisGrid is clearRows() which should delete the full rows in the grid, shifting the rows above down and adding empty rows at the top, like this:
+
+[xx]
+
+There is a simple getGrid() that exposes the grid stored in TetrisGrid, so unit tests can call clearRows() and then getGrid() to check the resulting grid.
