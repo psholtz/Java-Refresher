@@ -5,38 +5,46 @@ import java.util.Set;
 public class StringCode {
 
 	/**
-	 * Returns a version of the original string as follows: each digit 0-9 that appears in the original 
-	 * string is replaced by that many occurrences of the character to the right of the digit. So the 
-	 * string "a3tx2z" yields "attttxzzz" and "12x" yields "2xxx". A digit not followed by a character
-	 * (i.e., at the end of the string) is replaced by nothing.
+	 * Given a string, for each digit in the original string, replaces 
+	 * the digit with that many occurrences of the character following it.
+	 * So the string "a3tx2z" yields "attttxzzz".
 	 * 
-	 * @param str
-	 * @return
+	 * @param str Argument string in which replacements are to be made.
+	 * @return A string in which all the replacements have been made. 
 	 */
 	public static String blowup(String str) {
 		return blowupFromIndex(str,0);
 	}
 	
 	/**
-	 * Recursive function to implement "blowup" functionality.
+	 * Recursive helper function for blowup(String str). Performs the same 
+	 * functions as blowup, only starting at the given index and working outwards.
+	 * Procedure is re-invoked recursively each time a new digit is found 
+	 * (unless the digit is at the end).
 	 * 
-	 * @param str
-	 * @param index
-	 * @return
+	 * @param str Argument string to be "blown up"
+	 * @param index Point at which to start looking for digits to "blow up"
+	 * @return A string which has been "blown up", counting from index. 
+	 *
 	 */
 	private static String blowupFromIndex(String str,int index) {
 		// if string is empty, nothing to do
 		if ( str.length() == 0 ) { return ""; }
 		
+		// set up variables 
 		String newString = null, token = null;
 		StringBuffer buffer = null;
 		
-		// "blowup" the string, invoking recursion if necessary 
+		// start at index, and step forward, stopping if we find any digits 
 		for ( int i=index; i < str.length(); ++i ) {
+			// check if we are at the end, and if so terminate recursion
 			char c = str.charAt(i);
 			if ( i == str.length() - 1 ) {
 				return Character.isDigit(c) ? str.substring(0,i) : str;
 			}
+			
+			// build a new string and recursively invoke the
+			// procedure on the remaining string elements 
 			if ( Character.isDigit(c) ) {
 				char d = str.charAt(i+1);
 				buffer = new StringBuffer();
@@ -50,9 +58,18 @@ public class StringCode {
 			}
 		}
 		
+		// terminate recursion, if necessary 
 		return str;
 	}
 	
+	/**
+	 * Given a string, return the length of the longest run. A run 
+	 * is a series of adjacent chars that are all the same.
+	 * 
+	 * @param str Argument string in which to find the longest run of a single character.
+	 * @return int An int representing the longest "run" of a single character in the string.
+	 *
+	 */
 	public static int maxRun(String str) {
 		// handle corner cases
 		if ( str.length() == 0 ) { return 0; }
@@ -68,14 +85,23 @@ public class StringCode {
 		return max;
 	}
 	
+	/**
+	 * Given the argument string, find the character at the specified index 
+	 * and count how far the "run" extends from that index. Answer must be at
+	 * least "1", since at least that character itself is in the "run". The 
+	 * specified index must be between 0 and str.length() - 2.
+	 * 
+	 * @param str String in which to count the length of the "run".
+	 * @param index Index at which to begin counting the length of the "run".
+	 * @return Length of the run. Will always be at least 1. 
+	 */
 	private static int countRunFromIndex(String str,int index) {
 		// if index is out of bounds, throw a new exception
 		if ( index < 0 || index > str.length() - 2 ) {
 			throw new IllegalArgumentException("Index out of bounds ["+index+"]: "+str);
 		}
 		
-		// size of run will always be at least "1"
-		// count to see if it's going to be longer in this case 
+		// count the run, starting at index (will always be at least "1")
 		int count = 1;
 		for ( int i=index; i < str.length()-1; ++i ) {
 			char c = str.charAt(i);
@@ -89,20 +115,39 @@ public class StringCode {
 		return count;
 	}
 	
+	/**
+	 * Scans the two argument strings, "a" and "b", for common substrings of length "len".
+	 * Returns True if the two strings share one or more substrings of length "len" in common, 
+	 * otherwise returns False. 
+	 * 
+	 * @param a First argument string to check for common substrings.
+	 * @param b Second argument string to check for common substrings.
+	 * @param len Maximum length of the common substring. Must be 1 or greater.
+	 * @return True if a and b share one or more substrings in common of length "len", otherwise returns False.
+	 */
 	public static boolean stringIntersect(String a, String b, int len) {
 		// the size of intersection must be at least 1
 		if ( len < 1 ) {
 			throw new IllegalArgumentException("Size of intersection must be at least 1: " + len);
 		}
 		
-		// find the intersection of the two sets
+		// generate the substrings 
 		Set<String> s1 = generateSubstrings(a,len);
 		Set<String> s2 = generateSubstrings(b,len);
 		
+		// find the intersection
 		s1.retainAll(s2);
 		return s1.size() > 0;
 	}
 	
+	/**
+	 * Generate a collection (Set<String>) of strings by parsing the argument String
+	 * into substrings, each of length "len".
+	 * 
+	 * @param str Argument string to be parsed into substrings of length "len".
+	 * @param len Length of the parsed substrings.
+	 * @return Set<String> of all substrings of "str" of length "len".
+	 */
 	private static Set<String> generateSubstrings(String str, int len) {
 		Set<String> set = new HashSet<String>();
 		for ( int i=0; i < str.length() - len + 1; ++i ) {
