@@ -94,7 +94,7 @@ There is a simple getGrid() that exposes the grid stored in TetrisGrid, so unit 
 Collections
 ----------- 
 
-Exercies the basic functionality of Java Collections.
+Exercise the basic functionality of Java Collections.
 
 **<T> int sameCount(Collection<T> a, Collection<T> b)**
 
