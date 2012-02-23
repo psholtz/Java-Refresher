@@ -10,6 +10,14 @@ String blowup(String str)
 
 Returns a version of the original string as follows: each digit 0-9 that appears in the original string is replaced by that many occurrences of the character to the right of the digit. So the string "a3tx2z" yields "attttxzzz" and "12x" yields "2xxx". A digit not followed by a character (i.e., at the end of the string) is replaced by nothing.
 
+int maxRun(String str)
+
+Given a string, returns the length of the largest run in the string. A "run" is a series of zero or more adjacent characters that are the same. So the max run of "xxyyyz" is 3, and the max run of "xyz" is 1.
+
+boolean stringIntersect(String a, String b, int len)
+
+Given 2 strings, consider all the substrings within them of length len. Returns true if there are any such substrings which appear in both strings. Compute this in O(n) time using a HashSet. Len will be 1 or more.
+
 CharGrid
 -------- 
 
