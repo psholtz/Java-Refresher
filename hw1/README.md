@@ -16,12 +16,12 @@ Given a string, returns the length of the largest run in the string. A "run" is 
 
 **boolean stringIntersect(String a, String b, int len)**
 
-Given 2 strings, consider all the substrings within them of length len. Returns true if there are any such substrings which appear in both strings. Compute this in O(n) time using a HashSet. Len will be 1 or more.
+Given two strings, consider all the substrings within them of length len. Returns true if there are any such substrings which appear in both strings. Compute this in O(n) time using a HashSet. Len will be 1 or more.
 
 CharGrid
 -------- 
 
-The CharGrid class encapsulates a 2d char array with a couple operations.
+The CharGrid class encapsulates a 2-d char array with a couple operations.
 
 **int charArea(char ch)**
 
@@ -35,7 +35,7 @@ x b c a
 
 The area for 'a' is 12 (3 x 4) while for 'c' it is 3 (3 x 1). The second row contains a space bar, but that's still just a regular char.
 
-For testing, you can set up a 2d char[row][col] array literal like this (row 0 is "cax"):
+For testing, you can set up a 2-d char[row][col] array literal like this (row 0 is "cax"):
 
 <pre>
 char[][] grid = new char[][] {
@@ -62,11 +62,32 @@ z z z z z y z z z
 TetrisGrid
 ---------- 
 
+The TetrisGrid class encapsulates the classic rectangular board for the game Tetris (we'll play around with Tetris on Homework 2, so here's a chance to get a head start on that code). We'll store the Tetris board as a grid of booleans, where true is a filled square, and false is an empty square. We'll use the convention that grid[x][y] refers to a cell in the board game, with grid[0][0] representing the lower left square in the board, x growing to the right, y growing up (the standard Cartesian coordinate system). In the Tetris code, grid[x][y] is a natural way to think about the game, but notice that it's different from a grid[row][col] convention.
+
+Constructor -- the TetrisGrid constructor should take in a boolean[][] grid argument. The width and height of the grid will both be at least one. For example, below is a grid that is width 2 and height 3. The 2-d array literal syntax is row/col oriented, so our grid[x][y] appears rotated 90 degrees clockwise.
+
+<pre>
+boolean[][] grid = new boolean[][] {
+  { false, false, true },  // this is grid[x=0][..]
+  { true, true, false }    // this is grid[x=1][..]
+};
+</pre>
+
 **void clearRows()**
 
 The one key method in TetrisGrid is clearRows() which should delete the full rows in the grid, shifting the rows above down and adding empty rows at the top, like this:
 
-[xx]
+<pre>
+-------         ------- 
+| | | |         | | | | 
+| | | |         | | | | 
+|x| | |         | | | |
+| |x|x|  ===>   | | | |
+|x|x|x|         |x| | |
+|x|x| |         | |x|x|
+|x|x|x|         |x|x| |
+-------         -------
+</pre>
 
 There is a simple getGrid() that exposes the grid stored in TetrisGrid, so unit tests can call clearRows() and then getGrid() to check the resulting grid.
 
