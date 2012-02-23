@@ -1,6 +1,8 @@
 Homework 1
 ========== 
 
+xx
+
 StringCode
 ---------- 
 
