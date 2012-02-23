@@ -96,9 +96,9 @@ Collections
 
 Exercise the basic functionality of Java Collections.
 
-**<T> int sameCount(Collection<T> a, Collection<T> b)**
+**&lt;T&gt; int sameCount(Collection&lt;T&gt; a, Collection&lt;T&gt; b)**
 
-In the Appearances class, the static Appearances.sameCount() method takes in two collections -- A and B -- containing a generic <T> element type. Assume that the T elements implement equals() and hashCode() correctly, and so may be compared and hashed. The elements are in no particular order. Every element in A appears in A one or more times, using .equals() to compare elements for equality (the standard definition of equals() for java collections). Likewise every element in B appears one or more times, sameCount() counts the number of elements that appear in both collections the same number of times.
+In the Appearances class, the static Appearances.sameCount() method takes in two collections -- A and B -- containing a generic &lt;T&gt; element type. Assume that the T elements implement equals() and hashCode() correctly, and so may be compared and hashed. The elements are in no particular order. Every element in A appears in A one or more times, using .equals() to compare elements for equality (the standard definition of equals() for java collections). Likewise every element in B appears one or more times, sameCount() counts the number of elements that appear in both collections the same number of times.
 
 For example, with the collections {"a", "b", "a", "b", "c"} and {"c", "a", "a", "d", "b", "b", "b"} it returns 2, since the "a" and "c" appear the same number of times in both collections. Use hasing to compute the number of appearances efficiently.
 
@@ -108,4 +108,4 @@ Most of the previous problems have been about single methods, but Taboo is a cla
 
 The Taboo noFollow(elem) method returns the set of elements which should not follow the given element according to the rules. So with the rules {"a", "c", "a", "b"} the noFollow("a") returns the Set {"c", "b"}, while noFollow() with an element not constrained in the rules, e.g., noFollow("x") returns the empty set (the utility method Collections.emptySet() returns a read-only empty set for convinience).
 
-The reduce(List<T>) operation takes in a list, iterates over the list from start to end, and modifies the list by deleting the second element of any adjacent elements during the iteration that violate the rules. So for example, with the above rules, the collection {"a", "c", "b", "x", "c", "a"} is reduced to {"a", "x", "c"}. The elements in bold -- {"a", "c", "b", "x", "c", "a"} -- are deleted during the iteration since they violate a rule.
+The reduce(List&lt;T&gt;) operation takes in a list, iterates over the list from start to end, and modifies the list by deleting the second element of any adjacent elements during the iteration that violate the rules. So for example, with the above rules, the collection {"a", "c", "b", "x", "c", "a"} is reduced to {"a", "x", "c"}. The elements in bold -- {"a", "c", "b", "x", "c", "a"} -- are deleted during the iteration since they violate a rule.
